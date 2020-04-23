@@ -22,4 +22,9 @@
 
 console.log(axios.get('https://lambda-times-backend.herokuapp.com/articles'))
 
+// parent div 
 const cardsContainer = document.querySelector(".cards-container");
+
+function Cards (object){
+
+}

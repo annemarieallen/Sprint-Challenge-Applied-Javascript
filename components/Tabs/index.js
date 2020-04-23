@@ -13,20 +13,20 @@
 
 
 
-console.log(axios.get('https://lambda-times-backend.herokuapp.com/topics'));
+// console.log(axios.get('https://lambda-times-backend.herokuapp.com/topics'));
 
 
-const tab = document.querySelector(".topics");
-
-function tabsContent(object){
+const topics = document.querySelector('.topics');
+//Tab creation function
+function tabsContent(object) {
     object.topics.map(el => {
-    const tabs = document.createElement("div");
-    tabs.classList.add('tab');
-    tab.appendChild(tabs)
+    const tab = document.createElement('div');
+    tab.textContent = el;
+    tab.classList.add('tab');
+    topics.appendChild(tab);
     })
-      
 }
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
-    .then(response => tabsContent(response.data));
+.then(response => tabsContent(response.data));
 
