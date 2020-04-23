@@ -20,11 +20,50 @@
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
 
-console.log(axios.get('https://lambda-times-backend.herokuapp.com/articles'))
+// console.log(axios.get('https://lambda-times-backend.herokuapp.com/articles'))
 
-// parent div 
+// 
 const cardsContainer = document.querySelector(".cards-container");
 
-function Cards (object){
+let articleCreator = (article) => {
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const headline = document.createElement("div");
+    headline.classList.add("headline");
+    headline.textContent=`${article.headline}`;
+
+    const author = document.createElement("div");
+    author.classList.add("author");
+
+    const imgContainer = document.createElement("div");
+    imgContainer.classList.add("img-container");
+
+    const image = document.createElement('img');
+    image.src= `${article.authorPhoto}`;
+
+    const span = document.createElement("span");
+    span.textContent = `${article.authorName}`;
+
+    cardsContainer.appendChild(card);
+    card.appendChild(headline);
+    card.appendChild(author);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(image);
+    author.appendChild(span)
+
+
+    return card;
 
 }
+
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+  .then((response) => {
+    const articleCards = response.data.articles;
+    for (const property in articleCards) {
+      const articleList = articleCards[property];
+      articleList.map(article => articleCreator(article));
+    }
+  });
+
