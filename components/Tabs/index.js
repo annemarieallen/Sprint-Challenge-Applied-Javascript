@@ -22,4 +22,4 @@ function TabsContent (object) {
 }
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
-.then(response => tabsContent(response.data));
+.then(response => TabsContent(response.data));
